@@ -1,0 +1,24 @@
+{
+  "name": "jb-anmol-portfolio",
+  "version": "1.0.0",
+  "description": "JB Anmol's professional portfolio website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "build": "echo 'Static site - no build required'",
+    "start": "python -m http.server 8000"
+  },
+  "keywords": [
+    "portfolio",
+    "data-science",
+    "machine-learning",
+    "web-development"
+  ],
+  "author": "JB Anmol",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbanmol/jb-anmol-portfolio"
+  },
+  "homepage": "https://jbanmol.vercel.app"
+}
