@@ -82,7 +82,12 @@ export default {
 
     const personalInfo = {
       name: "JB ANMOL",
-      // ... (rest of personalInfo)
+      tagline: "Product & Data Science - The breadth engineer founders rely on to get things done",
+      availability: "Open to work",
+      description: "A versatile engineer with expertise spanning ML pipelines, web development, and system deployment. From program management to production systems, I deliver reliable solutions that founders can count on. My unique blend of technical depth and leadership experience enables me to bridge complex challenges with practical business impact.",
+      github: "https://github.com/jbanmol",
+      linkedin: "https://linkedin.com/in/jbanmol",
+      email: "jbanmol9@gmail.com"
     }
 
     const toggleMobileMenu = () => {
