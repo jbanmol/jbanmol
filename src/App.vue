@@ -87,7 +87,7 @@ export default {
     const mobileMenuOpen = ref(false)
     
     const personalInfo = {
-      name: "DEPLOYMENT TEST",
+      name: "Jb Anmol",
       location: "Jaipur, Rajasthan",
       email: "jbanmol9@gmail.com",
       phone: "+91 9962775663",
