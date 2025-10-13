@@ -1,6 +1,4 @@
-# JB Anmol - Modern Portfolio Website
-
-A modern, responsive portfolio website built with Vue 3 and Vite, showcasing expertise in data science, machine learning, and full-stack development.
+# Portfolio Website
 
 ## 🚀 Live Demo
 
@@ -8,7 +6,7 @@ Visit the live website: [https://jbanmol.vercel.app](https://jbanmol.vercel.app)
 
 ## ✨ Features
 
-- **Modern Tech Stack**: Vue 3 + Vite for lightning-fast performance
+- **Tech Stack**: Vue 3 + Vite for lightning-fast performance
 - **Component-Based Architecture**: Modular, maintainable code structure
 - **Responsive Design**: Optimized for all screen sizes (mobile, tablet, desktop)
 - **Browser Compatibility**: Works on all modern browsers including iOS Safari and Android
@@ -105,4 +103,4 @@ This project is licensed under the MIT License.
 
 ---
 
-Built with ❤️ by JB Anmol using Vue 3 + Vite
+Built using Vue 3 + Vite
