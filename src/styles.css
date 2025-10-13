@@ -458,6 +458,7 @@ body::before {
     font-size: 12px;
     font-family: var(--font-mono, monospace);
     border: 1px solid var(--border);
+    margin: 4px;
 }
 
 /* Projects Section */
@@ -486,10 +487,16 @@ body::before {
     box-shadow: var(--shadow-glow), 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
 .project-item h3 {
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 0;
     color: var(--text-primary);
 }
 
@@ -512,10 +519,20 @@ body::before {
 
 .project-description {
     color: var(--text-secondary);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     line-height: 1.6;
     text-align: justify;
     text-justify: inter-word;
+}
+
+.project-highlights {
+    margin-top: 25px;
+}
+
+.project-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 /* Skills Section */
