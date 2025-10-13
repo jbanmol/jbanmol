@@ -244,11 +244,11 @@ body::before {
     oklch(0.585 0.233 293.89) 100%
   );
 
-  background-size: 400% 400%;
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-shift 15s ease-in-out infinite;
+  animation: gradient-shift 6s ease-in-out infinite;
 }
 
 @keyframes gradient-shift {
