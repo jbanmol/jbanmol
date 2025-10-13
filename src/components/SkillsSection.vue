@@ -3,37 +3,20 @@
     <div class="container">
       <h2 class="reveal">Skills</h2>
       <div class="skills-grid">
-        <div
-          v-for="(skillGroup, key, index) in skills"
-          :key="key"
-          class="skill-category reveal"
-          :class="`reveal-delay-${index % 3 + 1}`"
-        >
+        <div v-for="(skillGroup, key, index) in skills" :key="key" class="skill-category reveal" :class="`reveal-delay-${index % 3 + 1}`">
           <h3>{{ skillGroup.category }}</h3>
           <ul class="skill-list">
-            <li
-              v-for="skill in skillGroup.items"
-              :key="skill.name"
-              :style="{ borderLeftColor: getSkillColor(skill.type) }"
-            >
+            <li v-for="skill in skillGroup.items" :key="skill.name"
+                :style="{ borderLeftColor: getSkillColor(skill) }">
               <div class="skill-info">
                 <span class="skill-name">{{ skill.name }}</span>
               </div>
               <div class="skill-bar">
-                <div
-                  class="skill-progress"
-                  :style="{
-                    width: '100%',
-                    background: getSkillGradient(skill.type),
-                    boxShadow: getSkillGlow(skill.type)
-                  }"
-                ></div>
+                <div class="skill-progress"
+                     :style="{ width: '100%', background: getSkillColor(skill) }"></div>
               </div>
-              <div
-                v-if="skill.details"
-                class="skill-details"
-                style="font-size: 11px; color: var(--text-muted); margin-top: 4px; font-style: italic;"
-              >
+              <div v-if="skill.details" class="skill-details"
+                   style="font-size: 11px; color: var(--text-muted); margin-top: 4px; font-style: italic;">
                 {{ skill.details }}
               </div>
             </li>
@@ -46,105 +29,88 @@
 
 <script>
 export default {
-  name: "SkillsSection",
+  name: 'SkillsSection',
   data() {
+    // Color hex values for core categories
+    const categoryColors = {
+      programming: '#3b82f6',        // blue
+      data_science: '#06b6d4',       // cyan
+      deployment: '#ef5fff',         // neon magenta
+      tools: '#a1a1aa',              // muted gray
+      leadership: '#8b5cf6',         // purple
+    };
     return {
+      categoryColors,
       skills: {
-        ml: {
-          category: "Machine Learning & Data Science",
+        programming: {
+          category: "Programming & Development",
           items: [
-            { name: "Python", type: "ml", details: "pandas, numpy, scikit-learn, flask, fastapi" },
-            { name: "Machine Learning", type: "ml", details: "Classification, regression, ensemble methods" },
-            { name: "Statistical Analysis", type: "ml", details: "A/B testing, hypothesis testing, correlation" },
-            { name: "Data Processing", type: "ml", details: "ETL pipelines, data cleaning, validation" },
-            { name: "LLM Integration", type: "ml", details: "Prompt engineering, API integration, embeddings" },
-            { name: "Data Visualization", type: "ml", details: "Interactive dashboards, storytelling" },
-            { name: "Excel", type: "ml", details: "Data analysis, formulas, automation" },
-            { name: "Google Sheets", type: "ml", details: "Spreadsheets, data validation, formulas" }
+            // Python is common, appears in multiple, so show as merged
+            { name: "Python", categories: ['programming', 'data_science', 'deployment'], details: "pandas, numpy, scikit-learn, flask, fastapi" },
+            // JavaScript is only programming (core, not merged visually for demo)
+            { name: "JavaScript", categories: ['programming'], details: "Vue.js, Node.js, DOM manipulation, async programming" },
+            { name: "SQL", categories: ['programming', 'data_science'], details: "Complex queries, database design, joins, optimization" },
+            { name: "HTML/CSS", categories: ['programming'], details: "Responsive design, animations, grid/flexbox" },
+            { name: "Git/GitHub", categories: ['programming', 'deployment'], details: "Version control, collaboration, CI/CD workflows" }
           ]
         },
-        dev: {
-          category: "Development",
+        data_science: {
+          category: "Data Science & ML",
           items: [
-            { name: "JavaScript", type: "dev", details: "Vue.js, Node.js, DOM manipulation, async programming" },
-            { name: "SQL", type: "dev", details: "Complex queries, database design, joins, optimization" },
-            { name: "HTML/CSS", type: "dev", details: "Responsive design, animations, grid/flexbox" },
-            { name: "Git/GitHub", type: "dev", details: "Version control, collaboration, CI/CD workflows" },
-            { name: "Web Scraping", type: "dev", details: "Beautiful Soup, Selenium, API integration" },
-            { name: "API Development", type: "dev", details: "REST APIs, authentication, CORS, FastAPI" },
-            { name: "Design & UX", type: "dev", details: "UI/UX principles, responsive design basics" }
+            // Core ML skill, single color
+            { name: "Machine Learning", categories: ['data_science'], details: "Classification, regression, ensemble methods" },
+            { name: "Statistical Analysis", categories: ['data_science'], details: "A/B testing, hypothesis testing, correlation" },
+            { name: "Data Processing", categories: ['data_science', 'deployment'], details: "ETL pipelines, data cleaning, validation" },
+            { name: "LLM Integration", categories: ['data_science'], details: "Prompt engineering, API integration, embeddings" },
+            { name: "Data Visualization", categories: ['data_science', 'tools'], details: "Interactive dashboards, storytelling" }
           ]
         },
-        ops: {
-          category: "Deployment & Operations",
+        deployment: {
+          category: "Deployment & DevOps",
           items: [
-            { name: "Cloud Platforms", type: "ops", details: "Vercel, Google Cloud, Docker containers" },
-            { name: "Database Systems", type: "ops", details: "SQLite, MySQL, DuckDB optimization" },
-            { name: "CI/CD & Testing", type: "ops", details: "GitHub Actions, automated testing pipelines" },
-            { name: "Development Environment", type: "ops", details: "VS Code, Jupyter, Docker, terminal tools" },
-            { name: "Data Tools", type: "ops", details: "Excel, Streamlit, OpenRefine, Google Sheets" },
-            { name: "Power BI", type: "ops", details: "Business intelligence, data visualization, reporting dashboards" },
-            { name: "Collaboration", type: "ops", details: "Git workflows, Google Workspace, documentation" }
+            // Core: Single category
+            { name: "Cloud Platforms", categories: ['deployment'], details: "Vercel, Google Cloud, Docker containers" },
+            // Merged
+            { name: "Web Scraping", categories: ['deployment', 'programming'], details: "Beautiful Soup, Selenium, API integration" },
+            { name: "Database Systems", categories: ['deployment', 'programming'], details: "SQLite, MySQL, DuckDB optimization" },
+            { name: "API Development", categories: ['deployment', 'programming'], details: "REST APIs, authentication, CORS, FastAPI" },
+            { name: "CI/CD & Testing", categories: ['deployment', 'tools'], details: "GitHub Actions, automated testing pipelines" }
           ]
         },
-        soft: {
-          category: "Soft Skills & Leadership",
+        tools: {
+          category: "Tools & Platforms",
           items: [
-            { name: "Team Leadership", type: "soft", details: "Cross-cultural collaboration, volunteer coordination, mentoring" },
-            { name: "Program Management", type: "soft", details: "Project coordination, resource management, process optimization" },
-            { name: "Strategic Thinking", type: "soft", details: "Problem solving, analytical approach, solution design" },
-            { name: "Communication", type: "soft", details: "Stakeholder management, presentation skills, documentation" },
-            { name: "Adaptability", type: "soft", details: "Learning agility, technology adoption, diverse environments" }
+            // Only tools
+            { name: "Development Environment", categories: ['tools'], details: "VS Code, Jupyter, Docker, terminal tools" },
+            { name: "Data Tools", categories: ['tools', 'data_science'], details: "Excel, Streamlit, OpenRefine, Google Sheets" },
+            { name: "Collaboration", categories: ['tools', 'leadership'], details: "Git workflows, Google Workspace, documentation" },
+            { name: "Design & UX", categories: ['tools'], details: "UI/UX principles, responsive design basics" },
+            { name: "Power BI", categories: ['tools', 'data_science'], details: "Business intelligence, data visualization, reporting dashboards" }
+          ]
+        },
+        leadership: {
+          category: "Leadership & Soft Skills",
+          items: [
+            // Leadership only
+            { name: "Team Leadership", categories: ['leadership'], details: "Cross-cultural collaboration, volunteer coordination, mentoring" },
+            { name: "Program Management", categories: ['leadership'], details: "Project coordination, resource management, process optimization" },
+            { name: "Strategic Thinking", categories: ['leadership'], details: "Problem solving, analytical approach, solution design" },
+            { name: "Communication", categories: ['leadership'], details: "Stakeholder management, presentation skills, documentation" },
+            { name: "Adaptability", categories: ['leadership'], details: "Learning agility, technology adoption, diverse environments" }
           ]
         }
       }
-    };
+    }
   },
   methods: {
-    getSkillColor(type) {
-      if (type === "ml") return "var(--accent, #3b82f6)";
-      if (type === "dev") return "var(--accent-secondary, #06b6d4)";
-      if (type === "ops") return "var(--accent-ops, #ef5fff)";
-      if (type === "soft") return "var(--accent-soft, #8b5cf6)";
-      return "var(--text-muted, #a1a1aa)";
-    },
-    // Animated gradient for each type
-    getSkillGradient(type) {
-      if (type === "ml") return "linear-gradient(90deg, #3b82f6, #60a5fa)";
-      if (type === "dev") return "linear-gradient(90deg, #06b6d4, #67e8f9)";
-      if (type === "ops") return "linear-gradient(90deg, #ef5fff, #f472b6)";
-      if (type === "soft") return "linear-gradient(90deg, #8b5cf6, #c4b5fd)";
-      return "var(--text-muted, #a1a1aa)";
-    },
-    // Neon box-shadow for glow effect
-    getSkillGlow(type) {
-      if (type === "ml") return "0 0 8px #3b82f6, 0 0 2px #60a5fa";
-      if (type === "dev") return "0 0 8px #06b6d4, 0 0 2px #67e8f9";
-      if (type === "ops") return "0 0 16px #ef5fff, 0 0 4px #f472b6";
-      if (type === "soft") return "0 0 12px #8b5cf6, 0 0 2px #c4b5fd";
-      return "";
+    getSkillColor(skill) {
+      if (!skill.categories || skill.categories.length === 0) return '#a1a1aa';
+      // Only single-category skills: use solid color.
+      if (skill.categories.length === 1) return this.categoryColors[skill.categories[0]] || '#a1a1aa';
+      // Dual or multi-category: blend as a gradient
+      const colors = skill.categories.map(cat => this.categoryColors[cat] || '#a1a1aa');
+      return `linear-gradient(90deg, ${colors.join(', ')})`;
     }
   }
-};
+}
 </script>
-
-<style scoped>
-.skill-bar {
-  height: 8px;
-  border-radius: 4px;
-  overflow: hidden;
-  margin-top: 7px;
-  background: var(--surface-1, #23232b);
-}
-.skill-progress {
-  height: 100%;
-  border-radius: 4px;
-  transition: background 0.8s linear;
-  animation: gradient-shift 3s infinite linear;
-}
-@keyframes gradient-shift {
-  0% { filter: brightness(1); }
-  50% { filter: brightness(1.10); }
-  100% { filter: brightness(1); }
-}
-</style>
