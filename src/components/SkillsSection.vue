@@ -31,13 +31,18 @@
 export default {
   name: 'SkillsSection',
   data() {
-    // Color hex values for core categories
+    // Vibrant/neon colors for core categories:
     const categoryColors = {
-      programming: '#3b82f6',        // blue
-      data_science: '#06b6d4',       // cyan
-      deployment: '#ef5fff',         // neon magenta
-      tools: '#a1a1aa',              // muted gray
-      leadership: '#8b5cf6',         // purple
+      programming: '#00fff7',       // Neon cyan
+      data_science: '#ff00ea',      // Neon magenta/pink
+      deployment: '#ffc107',        // Bright gold/yellow for deployment/ops
+      tools: '#39ff14',             // Neon green for tools
+      cloud: '#8f00ff',             // Neon violet/purple for cloud
+      leadership: '#ff5e00',        // Vibrant orange for leadership/soft
+      amazon: '#ff2e63',            // Neon red/pink for Amazon-related
+      azure: '#00aeff',             // Electric Azure blue
+      jira: '#fe019a',              // Neon pink for Jira
+      boto: '#fcff42',              // Lightning yellow for boto (automation)
     };
     return {
       categoryColors,
@@ -45,19 +50,18 @@ export default {
         programming: {
           category: "Programming & Development",
           items: [
-            // Python is common, appears in multiple, so show as merged
             { name: "Python", categories: ['programming', 'data_science', 'deployment'], details: "pandas, numpy, scikit-learn, flask, fastapi" },
-            // JavaScript is only programming (core, not merged visually for demo)
             { name: "JavaScript", categories: ['programming'], details: "Vue.js, Node.js, DOM manipulation, async programming" },
             { name: "SQL", categories: ['programming', 'data_science'], details: "Complex queries, database design, joins, optimization" },
             { name: "HTML/CSS", categories: ['programming'], details: "Responsive design, animations, grid/flexbox" },
-            { name: "Git/GitHub", categories: ['programming', 'deployment'], details: "Version control, collaboration, CI/CD workflows" }
+            { name: "Git/GitHub", categories: ['programming', 'deployment'], details: "Version control, collaboration, CI/CD workflows" },
+            // Boto as programming + deployment + Amazon
+            { name: "boto", categories: ['programming', 'deployment', 'amazon'], details: "Python AWS SDK, S3, automation" }
           ]
         },
         data_science: {
           category: "Data Science & ML",
           items: [
-            // Core ML skill, single color
             { name: "Machine Learning", categories: ['data_science'], details: "Classification, regression, ensemble methods" },
             { name: "Statistical Analysis", categories: ['data_science'], details: "A/B testing, hypothesis testing, correlation" },
             { name: "Data Processing", categories: ['data_science', 'deployment'], details: "ETL pipelines, data cleaning, validation" },
@@ -68,9 +72,9 @@ export default {
         deployment: {
           category: "Deployment & DevOps",
           items: [
-            // Core: Single category
-            { name: "Cloud Platforms", categories: ['deployment'], details: "Vercel, Google Cloud, Docker containers" },
-            // Merged
+            { name: "Cloud Platforms", categories: ['deployment', 'cloud'], details: "Vercel, Google Cloud, Docker containers" },
+            { name: "Azure Cloud", categories: ['deployment', 'cloud', 'azure'], details: "Azure portal, resource management, serverless" },
+            { name: "Amazon S3", categories: ['deployment', 'cloud', 'amazon'], details: "S3 storage, cloud integration" },
             { name: "Web Scraping", categories: ['deployment', 'programming'], details: "Beautiful Soup, Selenium, API integration" },
             { name: "Database Systems", categories: ['deployment', 'programming'], details: "SQLite, MySQL, DuckDB optimization" },
             { name: "API Development", categories: ['deployment', 'programming'], details: "REST APIs, authentication, CORS, FastAPI" },
@@ -80,7 +84,7 @@ export default {
         tools: {
           category: "Tools & Platforms",
           items: [
-            // Only tools
+            { name: "Jira", categories: ['tools', 'jira'], details: "Project management, agile boards, automation" },
             { name: "Development Environment", categories: ['tools'], details: "VS Code, Jupyter, Docker, terminal tools" },
             { name: "Data Tools", categories: ['tools', 'data_science'], details: "Excel, Streamlit, OpenRefine, Google Sheets" },
             { name: "Collaboration", categories: ['tools', 'leadership'], details: "Git workflows, Google Workspace, documentation" },
@@ -91,7 +95,6 @@ export default {
         leadership: {
           category: "Leadership & Soft Skills",
           items: [
-            // Leadership only
             { name: "Team Leadership", categories: ['leadership'], details: "Cross-cultural collaboration, volunteer coordination, mentoring" },
             { name: "Program Management", categories: ['leadership'], details: "Project coordination, resource management, process optimization" },
             { name: "Strategic Thinking", categories: ['leadership'], details: "Problem solving, analytical approach, solution design" },
@@ -105,9 +108,9 @@ export default {
   methods: {
     getSkillColor(skill) {
       if (!skill.categories || skill.categories.length === 0) return '#a1a1aa';
-      // Only single-category skills: use solid color.
+      // Single category: solid neon color
       if (skill.categories.length === 1) return this.categoryColors[skill.categories[0]] || '#a1a1aa';
-      // Dual or multi-category: blend as a gradient
+      // Multi-category: vibrant linear gradient
       const colors = skill.categories.map(cat => this.categoryColors[cat] || '#a1a1aa');
       return `linear-gradient(90deg, ${colors.join(', ')})`;
     }
