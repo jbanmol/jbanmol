@@ -98,7 +98,7 @@ export default {
           items: [
             { name: "Team Leadership", categories: ['leadership'], details: "Cross-cultural collaboration, volunteer coordination, mentoring" },
             { name: "Program Management", categories: ['leadership'], details: "Project coordination, resource management, process optimization" },
-            { name: "Emotional Intelligence", categories: ['leadership'], details: "Empathy, self-awareness, conflict resolution" }
+            { name: "Emotional Intelligence", categories: ['leadership'], details: "Empathy, self-awareness, conflict resolution" },
             { name: "Strategic Thinking", categories: ['leadership'], details: "Problem solving, analytical approach, solution design" },
             { name: "Communication", categories: ['leadership'], details: "Stakeholder management, presentation skills, documentation" },
             { name: "Adaptability", categories: ['leadership'], details: "Learning agility, technology adoption, diverse environments" }
