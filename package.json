@@ -1,18 +1,16 @@
 {
   "name": "jb-anmol-portfolio",
+  "private": true,
   "version": "1.0.0",
-  "description": "JB Anmol's professional portfolio website",
-  "main": "index.html",
-  "scripts": {
-    "dev": "python -m http.server 8000",
-    "build": "echo 'Static site - no build required'",
-    "start": "python -m http.server 8000"
-  },
+  "type": "module",
+  "description": "JB Anmol's modern portfolio website built with Vue 3 and Vite",
   "keywords": [
     "portfolio",
     "data-science",
     "machine-learning",
-    "web-development"
+    "web-development",
+    "vue3",
+    "vite"
   ],
   "author": "JB Anmol",
   "license": "MIT",
@@ -20,5 +18,17 @@
     "type": "git",
     "url": "https://github.com/jbanmol/jb-anmol-portfolio"
   },
-  "homepage": "https://jbanmol.vercel.app"
+  "homepage": "https://jbanmol.vercel.app",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "vite": "^7.1.7"
+  }
 }
