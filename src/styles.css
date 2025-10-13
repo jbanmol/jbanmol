@@ -519,10 +519,20 @@ body::before {
 
 .project-description {
     color: var(--text-secondary);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     line-height: 1.6;
     text-align: justify;
     text-justify: inter-word;
+}
+
+.project-highlights {
+    margin-top: 25px;
+}
+
+.project-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 /* Skills Section */
