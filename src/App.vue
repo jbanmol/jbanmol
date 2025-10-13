@@ -4,7 +4,6 @@
     <header class="header">
       <div class="container">
         <nav class="nav">
-          <div class="nav-brand">JB ANMOL</div>
           <button class="mobile-menu-btn" @click="toggleMobileMenu">☰</button>
           <ul class="nav-links" :class="{ active: mobileMenuOpen }">
             <li><a href="#about" @click="closeMobileMenu">About</a></li>

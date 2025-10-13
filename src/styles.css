@@ -148,16 +148,10 @@ body::before {
 
 .nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+    gap: 30px;
     padding: 20px 0;
-}
-
-.nav-brand {
-    font-weight: 600;
-    font-size: 18px;
-    font-family: var(--font-mono, monospace);
-    color: var(--accent);
 }
 
 .nav-links {
@@ -644,11 +638,64 @@ body::before {
 
 /* Mobile & Responsive */
 .mobile-menu-btn {
+    display: none; /* Hidden by default on desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
     color: var(--text-primary);
+    z-index: 1001; /* Ensure it's above other nav elements */
 }
 
 .nav-links.active {
-    background: var(--bg-primary);
-    border: 1px solid var(--border);
-    transition: transform var(--transition-duration) var(--transition-timing);
+    transform: translateX(0); /* Slide in */
+    box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+}
+
+/* ==========================================================================
+   Tablet & Mobile Responsive Styles
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .nav {
+        justify-content: space-between; /* Hamburger left, Toggle right */
+        gap: 0;
+    }
+
+    .mobile-menu-btn {
+        display: block; /* Show the hamburger button */
+        position: relative; /* Keep it in the flow */
+    }
+
+    .nav-links {
+        /* Mobile Menu Panel - Hidden by default */
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+
+        background: var(--glass-bg);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        border-left: 1px solid var(--glass-border);
+
+        transform: translateX(100%); /* Start off-screen */
+        transition: transform var(--transition-duration) var(--transition-timing);
+    }
+
+    .nav-links a {
+        font-size: 20px; /* Larger tap targets */
+    }
+
+    /* Ensure the original theme toggle is visible now */
+    .nav .theme-toggle {
+       display: flex;
+    }
 }
