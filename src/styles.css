@@ -3,6 +3,10 @@
   /* Explicit color scheme declaration */
   color-scheme: dark;
 
+  /* Transitions */
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-duration: 0.3s;
+
   /* Primary colors - Fallback first, then OKLCH */
   --bg-primary-fallback: #0a0a0b;
   --bg-primary: linear-gradient(135deg, #0a0a0b 0%, #111115 50%, #1a1a1f 100%);
@@ -109,30 +113,22 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-
-  /* Fallback for older browsers */
   background:
-    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 40% 60%, rgba(6, 182, 212, 0.02) 0%, transparent 50%);
-
-  /* Modern OKLCH gradient overlay */
-  background:
-    radial-gradient(circle at 20% 20%,
-      color-mix(in oklch, var(--accent) 3%, transparent) 0%,
-      transparent 50%
-    ),
-    radial-gradient(circle at 80% 80%,
-      color-mix(in oklch, var(--accent-tertiary) 3%, transparent) 0%,
-      transparent 50%
-    ),
-    radial-gradient(circle at 40% 60%,
-      color-mix(in oklch, var(--accent-secondary) 2%, transparent) 0%,
-      transparent 50%
-    );
-
+    radial-gradient(circle at 20% 20%, oklch(0.2 0.05 260 / 0.1) 0%, transparent 25%),
+    radial-gradient(circle at 80% 80%, oklch(0.2 0.05 300 / 0.1) 0%, transparent 25%),
+    radial-gradient(circle at 50% 50%, oklch(0.2 0.03 200 / 0.08) 0%, transparent 25%);
   pointer-events: none;
   z-index: -1;
+  animation: mesh-shift 20s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes mesh-shift {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    25% { transform: translate(10px, -15px) scale(1.02); opacity: 0.95; }
+    50% { transform: translate(-5px, 10px) scale(1.05); opacity: 1; }
+    75% { transform: translate(15px, 5px) scale(1.03); opacity: 0.9; }
+    100% { transform: translate(0, 0) scale(1); opacity: 1; }
 }
 
 /* Container */
@@ -227,28 +223,27 @@ body::before {
   font-weight: 700;
   letter-spacing: -0.03em;
   margin-bottom: 20px;
+  text-shadow: 0 0 15px oklch(0.1 0.05 260 / 0.2);
 
   /* Fallback for older browsers */
   background: linear-gradient(135deg,
-    var(--text-primary, #ffffff) 0%,
-    var(--accent, #3b82f6) 40%,
-    var(--accent-secondary, #06b6d4) 70%,
-    var(--accent-tertiary, #8b5cf6) 100%
+    #cffef4 0%,
+    #e9d8ff 50%,
+    #ffdab9 100%
   );
 
-  /* Modern OKLCH gradient with fallback */
+  /* Modern OKLCH gradient */
   background: linear-gradient(in oklch,
-    oklch(1.0 0 0) 0%,
-    oklch(0.623 0.188 259.81) 40%,
-    oklch(0.709 0.139 198.36) 70%,
-    oklch(0.585 0.233 293.89) 100%
+    oklch(0.9 0.1 180) 0%,
+    oklch(0.85 0.12 290) 50%,
+    oklch(0.85 0.15 30) 100%
   );
 
-  background-size: 300% 300%;
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-shift 6s ease-in-out infinite;
+  animation: gradient-shift 15s ease-in-out infinite;
 }
 
 @keyframes gradient-shift {
