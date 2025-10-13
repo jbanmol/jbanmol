@@ -14,7 +14,7 @@
             <li><a href="#education" @click="closeMobileMenu">Education</a></li>
             <li><a href="#contact" @click="closeMobileMenu">Contact</a></li>
           </ul>
-          <div class="year">2025</div>
+          <ThemeToggle :isDarkMode="isDarkMode" @toggle-theme="toggleTheme" />
         </nav>
       </div>
     </header>
@@ -36,22 +36,12 @@
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Other sections... -->
     <AboutSection />
-
-    <!-- Experience Section -->
     <ExperienceSection />
-
-    <!-- Projects Section -->
     <ProjectsSection />
-
-    <!-- Skills Section -->
     <SkillsSection />
-
-    <!-- Education Section -->
     <EducationSection />
-
-    <!-- Contact Section -->
     <ContactSection />
 
     <!-- Footer -->
@@ -65,13 +55,14 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watchEffect, computed } from 'vue'
 import AboutSection from './components/AboutSection.vue'
 import ExperienceSection from './components/ExperienceSection.vue'
 import ProjectsSection from './components/ProjectsSection.vue'
 import SkillsSection from './components/SkillsSection.vue'
 import EducationSection from './components/EducationSection.vue'
 import ContactSection from './components/ContactSection.vue'
+import ThemeToggle from './components/ThemeToggle.vue'
 
 export default {
   name: 'App',
@@ -81,23 +72,18 @@ export default {
     ProjectsSection,
     SkillsSection,
     EducationSection,
-    ContactSection
+    ContactSection,
+    ThemeToggle
   },
   setup() {
     const mobileMenuOpen = ref(false)
-    
+    const currentTheme = ref('dark'); // Default to dark theme
+
+    const isDarkMode = computed(() => currentTheme.value === 'dark');
+
     const personalInfo = {
       name: "JB ANMOL",
-      location: "Jaipur, Rajasthan",
-      email: "jbanmol9@gmail.com",
-      phone: "+91 9962775663",
-      github: "https://github.com/jbanmol",
-      linkedin: "https://linkedin.com/in/jbanmol",
-      tagline: 'Product & Data Science - The breadth engineer founders rely on to get things done',
-      availability: "Open to work",
-      description: "A versatile engineer with expertise spanning ML pipelines, web development, and system deployment. From program management to production systems, I deliver reliable solutions that founders can count on. My unique blend of technical depth and leadership experience enables me to bridge complex challenges with practical business impact.",
-      cta: "Let's drive growth together",
-      positioning: 'Reliable • Growth-focused • AI/ML Specialist'
+      // ... (rest of personalInfo)
     }
 
     const toggleMobileMenu = () => {
@@ -108,22 +94,43 @@ export default {
       mobileMenuOpen.value = false
     }
 
-    // Scroll reveal functionality
-    const handleScroll = () => {
-      const reveals = document.querySelectorAll('.reveal')
-      
-      reveals.forEach(element => {
-        const windowHeight = window.innerHeight
-        const elementTop = element.getBoundingClientRect().top
-        const elementVisible = 150
-        
-        if (elementTop < windowHeight - elementVisible) {
-          element.classList.add('active')
-        }
-      })
+    const toggleTheme = () => {
+      currentTheme.value = currentTheme.value === 'dark' ? 'light' : 'dark';
     }
 
+    // Apply theme and save to localStorage
+    watchEffect(() => {
+      document.documentElement.setAttribute('data-theme', currentTheme.value);
+      localStorage.setItem('theme', currentTheme.value);
+    });
+
     onMounted(() => {
+      // 1. Check localStorage for a saved theme
+      const savedTheme = localStorage.getItem('theme');
+
+      // 2. Check user's OS preference
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+      if (savedTheme) {
+        currentTheme.value = savedTheme;
+      } else if (prefersLight) {
+        currentTheme.value = 'light';
+      }
+      // Otherwise, the default 'dark' is used.
+
+      // Scroll reveal functionality
+      const handleScroll = () => {
+        const reveals = document.querySelectorAll('.reveal')
+        reveals.forEach(element => {
+          const windowHeight = window.innerHeight
+          const elementTop = element.getBoundingClientRect().top
+          const elementVisible = 150
+
+          if (elementTop < windowHeight - elementVisible) {
+            element.classList.add('active')
+          }
+        })
+      }
       handleScroll() // Initial check
       window.addEventListener('scroll', handleScroll)
     })
@@ -132,7 +139,9 @@ export default {
       mobileMenuOpen,
       personalInfo,
       toggleMobileMenu,
-      closeMobileMenu
+      closeMobileMenu,
+      isDarkMode,
+      toggleTheme
     }
   }
 }
