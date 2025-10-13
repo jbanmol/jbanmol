@@ -66,6 +66,7 @@ export default {
             { name: "Statistical Analysis", categories: ['data_science'], details: "A/B testing, hypothesis testing, correlation" },
             { name: "Data Processing", categories: ['data_science', 'deployment'], details: "ETL pipelines, data cleaning, validation" },
             { name: "LLM Integration", categories: ['data_science'], details: "Prompt engineering, API integration, embeddings" },
+            { name: "Time Series Analysis", categories: ['data_science'], details: "Forecasting, ARIMA, LSTM, anomaly detection" },
             { name: "Data Visualization", categories: ['data_science', 'tools'], details: "Interactive dashboards, storytelling" }
           ]
         },
@@ -84,7 +85,7 @@ export default {
         tools: {
           category: "Tools & Platforms",
           items: [
-            { name: "Jira", categories: ['tools', 'jira'], details: "Project management, agile boards, automation" },
+            { name: "Odoo", categories: ['tools', 'odoo'], details: "ERP management, CRM, project automation" },
             { name: "Development Environment", categories: ['tools'], details: "VS Code, Jupyter, Docker, terminal tools" },
             { name: "Data Tools", categories: ['tools', 'data_science'], details: "Excel, Streamlit, OpenRefine, Google Sheets" },
             { name: "Collaboration", categories: ['tools', 'leadership'], details: "Git workflows, Google Workspace, documentation" },
@@ -97,6 +98,7 @@ export default {
           items: [
             { name: "Team Leadership", categories: ['leadership'], details: "Cross-cultural collaboration, volunteer coordination, mentoring" },
             { name: "Program Management", categories: ['leadership'], details: "Project coordination, resource management, process optimization" },
+            { name: "Emotional Intelligence", categories: ['leadership'], details: "Empathy, self-awareness, conflict resolution" }
             { name: "Strategic Thinking", categories: ['leadership'], details: "Problem solving, analytical approach, solution design" },
             { name: "Communication", categories: ['leadership'], details: "Stakeholder management, presentation skills, documentation" },
             { name: "Adaptability", categories: ['leadership'], details: "Learning agility, technology adoption, diverse environments" }
