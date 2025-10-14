@@ -6,7 +6,6 @@
         <nav class="nav">
           <button class="mobile-menu-btn" @click="toggleMobileMenu">☰</button>
           <ul class="nav-links" :class="{ active: mobileMenuOpen }">
-            <li><a href="#about" @click="closeMobileMenu">About</a></li>
             <li><a href="#experience" @click="closeMobileMenu">Experience</a></li>
             <li><a href="#projects" @click="closeMobileMenu">Projects</a></li>
             <li><a href="#skills" @click="closeMobileMenu">Skills</a></li>
@@ -36,7 +35,6 @@
     </section>
 
     <!-- Other sections... -->
-    <AboutSection />
     <ExperienceSection />
     <ProjectsSection />
     <SkillsSection />
@@ -55,7 +53,6 @@
 
 <script>
 import { ref, onMounted, watchEffect, computed } from 'vue'
-import AboutSection from './components/AboutSection.vue'
 import ExperienceSection from './components/ExperienceSection.vue'
 import ProjectsSection from './components/ProjectsSection.vue'
 import SkillsSection from './components/SkillsSection.vue'
@@ -66,7 +63,6 @@ import ThemeToggle from './components/ThemeToggle.vue'
 export default {
   name: 'App',
   components: {
-    AboutSection,
     ExperienceSection,
     ProjectsSection,
     SkillsSection,

@@ -147,7 +147,7 @@ html.dark .dark-icon {
 
 .form-group {
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .form-group label {
@@ -208,18 +208,18 @@ html.dark .dark-icon {
 
 .form-group textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 100px;
 }
 
 .submit-btn {
   display: block;
   width: 100%;
-  padding: 16px;
+  padding: 14px;
   background-color: var(--accent);
   color: #ffffff;
   border: none;
   border-radius: 8px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
