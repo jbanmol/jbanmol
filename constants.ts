@@ -47,14 +47,14 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/jbanmol/binary_classification_clinical.git",
   },
   {
-    title: "AI Project Deployment Agent",
-    description: "Built an AI agent that automatically builds, deploys, and updates projects on GitHub based on natural language user queries.",
+    title: "AI Builder & Deployer",
+    description: "Built an AI agent using GPT-4o-mini that automatically builds, deploys, and updates projects on GitHub based on natural language user queries.",
     tech: ["Python", "OpenAI", "LangChain", "Hugging Face", "Docker"],
     repoUrl: "https://github.com/jbanmol/Build_Deploy_gpt-4o-mini-IITM",
   },
   {
     title: "Movie Review Sentiment Analyzer",
-    description: "Built a sentiment analysis model using the Gemini API (gemini-flash) to classify movie reviews as positive or negative with high accuracy.",
+    description: "Developed a Created a high-accuracy sentiment analysis model with Gemini Flash 2.0 to classify movie reviews and fine-tune responses using temperature control.",
     tech: ["Python", "Gemini API", "Pandas & NumPy"],
     repoUrl: "https://github.com/jbanmol/movie_Review_Sentiment_Analyzer",
   },
