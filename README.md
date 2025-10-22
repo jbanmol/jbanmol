@@ -2,7 +2,13 @@
 
 Portfolio website built with React, TypeScript, and Vite. This site showcases my skills, projects, and experience as a Data Scientist and AI Enthusiast.
 
-![Portfolio Preview](https://jbanmol.tech)
+<div align="center">
+  <h3><a href="https://jbanmol.tech">✨ View Live Site ✨</a></h3>
+</div>
+
+## My Web Development Journey
+
+This project represents my journey into web development. Many of these technologies were new to me, and this project has been an exciting learning opportunity to broaden my technical capabilities.
 
 ## Features
 
@@ -14,14 +20,39 @@ Portfolio website built with React, TypeScript, and Vite. This site showcases my
 - 🖱️ Custom cursor effects
 - ⚡ Built with Vite for fast performance
 
-## Tech Stack
+## Skills & Technologies Used
 
-- React 19
-- TypeScript
-- Vite 6
-- Framer Motion for animations
-- Google Gemini API for AI assistant
-- CSS Variables for theming
+### Frontend Development
+![React](https://img.shields.io/badge/-React%2019-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/-Vite%206-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+
+### UI/UX & Animation
+![Framer Motion](https://img.shields.io/badge/-Framer%20Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+![CSS Variables](https://img.shields.io/badge/-CSS%20Variables-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+
+### AI Integration
+![Google Gemini](https://img.shields.io/badge/-Google%20Gemini%20API-4285F4?style=for-the-badge&logo=google&logoColor=white)
+
+### Deployment & DevOps
+![Git](https://img.shields.io/badge/-Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Vercel](https://img.shields.io/badge/-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![npm](https://img.shields.io/badge/-npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+
+### Learning Reflections
+
+This project represents my first significant foray into modern frontend development. Coming from a data science background, I wanted to challenge myself to learn new technologies and expand my skill set. Some key learning areas included:
+
+- React component architecture and hooks
+- TypeScript integration with React
+- CSS variables and modern styling approaches
+- Responsive design principles
+- API integration with Google Gemini
+- Deployment and CI/CD through Vercel
+
+I believe that understanding both data science and web development creates a valuable intersection of skills, especially for creating interactive data applications and AI-powered experiences.
 
 ## Development
 
@@ -70,10 +101,23 @@ This project is configured for automatic deployment on Vercel:
 
 ## License
 
-All rights reserved. This code is the property of JB Anmol.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Contact
 
 - [GitHub](https://github.com/jbanmol)
 - [LinkedIn](https://linkedin.com/in/jbanmol)
 - Email: jbanmol9@gmail.com
+
+## Acknowledgments
+
+I'd like to thank the open source community for the excellent documentation, tutorials, and resources that made this learning journey possible. Special appreciation goes to:
+
+- The React and TypeScript communities
+- The creators of Vite for an exceptional build tool
+- Google for providing access to the Gemini API
+- Vercel for their straightforward deployment platform
+
+This project has been an invaluable learning experience as I continue to grow beyond my data science foundations into full-stack development.
