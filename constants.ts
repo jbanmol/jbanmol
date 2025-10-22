@@ -38,13 +38,13 @@ export const projects: Project[] = [
     title: "Clinical Analytics Pipeline",
     description: "Built an end-to-end data pipeline with robust validation, anomaly detection, and automated QA, reducing manual review time by 40%.",
     tech: ["Python", "SQL", "Pandas & NumPy", "ETL Pipelines"],
-    repoUrl: "https://github.com/jbanmol/clinical-analytics-pipeline",
+    repoUrl: "https://github.com/jbanmol/Touchdata_Analysis_clinical.git",
   },
   {
     title: "Neuro-Diverse Medical Classification",
     description: "Applied statistical modeling and cohort analysis to distill user behavior data into actionable product insights for a neuro-diverse context.",
     tech: ["Python", "scikit-learn", "Statistical Modeling", "RAG"],
-    repoUrl: "https://github.com/jbanmol/neuro-diverse-classification",
+    repoUrl: "https://github.com/jbanmol/binary_classification_clinical.git",
   },
   {
     title: "AI Project Deployment Agent",
