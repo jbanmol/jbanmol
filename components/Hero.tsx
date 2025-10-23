@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
               onMouseLeave={() => document.body.classList.remove('cursor-hidden-by-hover')}
             >
         <img
-          src="/assets/IMG_3429.JPG"
+          src="/assets/IMG_3429.webp"
           alt="Jb Anmol"
           className="w-52 h-52 rounded-full object-cover border-4"
           style={{ borderColor: 'var(--surface)'}}
