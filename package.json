@@ -9,19 +9,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/genai": "^1.25.0",
+    "@react-three/drei": "^9.88.0",
+    "@react-three/fiber": "^8.18.0",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/engine": "^3.0.0",
+    "@tsparticles/slim": "^3.0.0",
+    "framer-motion": "^11.3.19",
+    "lottie-react": "^2.4.0",
+    "lucide-react": "^0.546.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "@google/genai": "^1.25.0",
-    "lucide-react": "^0.546.0",
-    "framer-motion": "^11.3.19",
     "react-markdown": "^9.0.1",
     "remark-gfm": "^4.0.0",
-    "@react-three/fiber": "^8.18.0",
-    "@react-three/drei": "^9.88.0",
-    "three": "^0.158.0",
-    "react-tsparticles": "^2.12.2",
-    "tsparticles": "^3.0.3",
-    "lottie-react": "^2.4.0"
+    "three": "^0.158.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
