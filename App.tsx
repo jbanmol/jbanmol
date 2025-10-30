@@ -1,15 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Header from './components/Header';
-import Hero from './components/Hero';
 import About from './components/About';
 import Experience from './components/Experience';
-import Skills from './components/Skills';
 import Projects from './components/Projects';
 import AskAnmolAI from './components/AskAnmolAI';
 import Footer from './components/Footer';
-import CustomCursor from './components/CustomCursor';
 import CommandPalette from './components/CommandPalette';
 import type { Skill } from './types';
+
+// Enhanced components with lazy loading for performance
+const EnhancedCursor = React.lazy(() => import('./components/EnhancedCursor'));
+const EnhancedHero = React.lazy(() => import('./components/EnhancedHero'));
+const EnhancedSkills = React.lazy(() => import('./components/EnhancedSkills'));
+const ParticleBackground = React.lazy(() => import('./components/ParticleBackground'));
+
+// Fallback components
+const CustomCursor = React.lazy(() => import('./components/CustomCursor'));
+const Hero = React.lazy(() => import('./components/Hero'));
+const Skills = React.lazy(() => import('./components/Skills'));
+
+// Loading component
+const ComponentLoader: React.FC = () => (
+  <div className="flex items-center justify-center py-8">
+    <div className="animate-spin rounded-full h-8 w-8 border-2 border-[var(--accent-primary)] border-t-transparent"></div>
+  </div>
+);
 
 function App() {
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
@@ -18,6 +33,25 @@ function App() {
     const storedValue = localStorage.getItem('isCursorEnabled');
     return storedValue ? JSON.parse(storedValue) : true;
   });
+  const [useEnhancedComponents, setUseEnhancedComponents] = useState(() => {
+    // Check for WebGL support and device capabilities
+    try {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      const hasWebGL = !!gl;
+      const isDesktop = window.innerWidth >= 1024;
+      const hasGoodPerformance = navigator.hardwareConcurrency >= 4;
+      
+      return hasWebGL && isDesktop && hasGoodPerformance;
+    } catch (e) {
+      return false;
+    }
+  });
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window === 'undefined') return 'dark';
+    const stored = localStorage.getItem('theme');
+    return (stored as 'light' | 'dark') || 'dark';
+  });
 
   const handleSkillSelect = (skill: Skill | null) => {
     setSelectedSkill(skill);
@@ -25,6 +59,11 @@ function App() {
   
   const toggleCursor = () => {
     setIsCursorEnabled((prev: boolean) => !prev);
+  };
+
+  const toggleEnhancedMode = () => {
+    setUseEnhancedComponents(prev => !prev);
+    localStorage.setItem('enhancedMode', JSON.stringify(!useEnhancedComponents));
   };
 
   useEffect(() => {
@@ -37,40 +76,127 @@ function App() {
       document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [selectedSkill]);
-  
+
+  // Theme detection
+  useEffect(() => {
+    const root = document.documentElement;
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  // Error boundary fallback
+  const ErrorFallback: React.FC<{ error: Error }> = ({ error }) => (
+    <div className="flex items-center justify-center py-8 text-center">
+      <div className="text-[var(--muted)]">
+        <p>Oops! Something went wrong.</p>
+        <button 
+          onClick={() => window.location.reload()} 
+          className="mt-2 px-4 py-2 bg-[var(--accent-primary)] text-[var(--text-on-accent)] rounded-lg hover:opacity-90 transition-opacity"
+        >
+          Reload Page
+        </button>
+      </div>
+    </div>
+  );
+
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
-      <CustomCursor isCursorEnabled={isCursorEnabled} />
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-300 relative">
+      {/* Particle Background - Enhanced mode only */}
+      {useEnhancedComponents && (
+        <Suspense fallback={null}>
+          <ParticleBackground 
+            theme={theme} 
+            density="medium" 
+            interactive={true} 
+          />
+        </Suspense>
+      )}
+      
+      {/* Cursor - Enhanced or Fallback */}
+      <Suspense fallback={null}>
+        {useEnhancedComponents ? (
+          <EnhancedCursor isCursorEnabled={isCursorEnabled} />
+        ) : (
+          <CustomCursor isCursorEnabled={isCursorEnabled} />
+        )}
+      </Suspense>
+      
+      {/* Command Palette */}
       <CommandPalette 
         isOpen={isCommandPaletteOpen} 
         setIsOpen={setIsCommandPaletteOpen}
         isCursorEnabled={isCursorEnabled}
         toggleCursor={toggleCursor}
       />
-      <Header onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} />
-      <main className="container mx-auto px-6 md:px-12 lg:px-24">
+      
+      {/* Header with Enhanced Mode Toggle */}
+      <Header 
+        onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
+        enhancedMode={useEnhancedComponents}
+        onToggleEnhanced={toggleEnhancedMode}
+      />
+      
+      <main className="container mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+        {/* Hero Section */}
         <div id="home" className="h-screen min-h-[700px] flex items-center justify-center">
-          <Hero />
+          <Suspense fallback={<ComponentLoader />}>
+            {useEnhancedComponents ? (
+              <EnhancedHero />
+            ) : (
+              <Hero />
+            )}
+          </Suspense>
         </div>
+        
+        {/* Main Sections */}
         <div className="space-y-32 md:space-y-40 py-24">
           <div id="about">
             <About />
           </div>
+          
           <div id="experience">
             <Experience />
           </div>
+          
           <div id="skills">
-            <Skills onSkillSelect={handleSkillSelect} selectedSkill={selectedSkill} />
+            <Suspense fallback={<ComponentLoader />}>
+              {useEnhancedComponents ? (
+                <EnhancedSkills 
+                  onSkillSelect={handleSkillSelect} 
+                  selectedSkill={selectedSkill} 
+                />
+              ) : (
+                <Skills 
+                  onSkillSelect={handleSkillSelect} 
+                  selectedSkill={selectedSkill} 
+                />
+              )}
+            </Suspense>
           </div>
+          
           <div id="projects">
-            <Projects selectedSkill={selectedSkill} onClearFilter={() => handleSkillSelect(null)} />
+            <Projects 
+              selectedSkill={selectedSkill} 
+              onClearFilter={() => handleSkillSelect(null)} 
+            />
           </div>
+          
           <div id="contact">
             <AskAnmolAI />
           </div>
         </div>
       </main>
+      
       <Footer />
+      
+      {/* Enhanced Mode Indicator */}
+      {useEnhancedComponents && (
+        <div className="fixed bottom-4 left-4 z-50">
+          <div className="px-3 py-1 bg-glass backdrop-blur-sm rounded-full border border-[var(--accent-primary)] text-xs text-[var(--accent-primary)] font-medium">
+            Enhanced Mode
+          </div>
+        </div>
+      )}
     </div>
   );
 }
