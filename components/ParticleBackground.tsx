@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import Particles from 'react-tsparticles';
-import { loadSlim } from 'tsparticles';
-import type { Engine } from 'tsparticles';
+import { loadSlim } from '@tsparticles/slim';
+import type { Engine } from 'tsparticles-engine';
 
 interface ParticleBackgroundProps {
   theme?: 'light' | 'dark';

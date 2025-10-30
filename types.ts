@@ -1,4 +1,5 @@
 import type * as React from 'react';
+import '@react-three/fiber';
 
 export interface Experience {
   role: string;
