@@ -10,9 +10,9 @@ import type { Skill } from './types';
 
 // Enhanced components with lazy loading for performance
 const EnhancedCursor = React.lazy(() => import('./components/EnhancedCursor'));
-const EnhancedHero = React.lazy(() => import('./components/EnhancedHero'));
-const EnhancedSkills = React.lazy(() => import('./components/EnhancedSkills'));
-const ParticleBackground = React.lazy(() => import('./components/ParticleBackground'));
+const EnhancedHeroSimple = React.lazy(() => import('./components/EnhancedHeroSimple'));
+const EnhancedSkillsSimple = React.lazy(() => import('./components/EnhancedSkillsSimple'));
+const ParticleBackgroundSimple = React.lazy(() => import('./components/ParticleBackgroundSimple'));
 
 // Fallback components
 const CustomCursor = React.lazy(() => import('./components/CustomCursor'));
@@ -34,18 +34,8 @@ function App() {
     return storedValue ? JSON.parse(storedValue) : true;
   });
   const [useEnhancedComponents, setUseEnhancedComponents] = useState(() => {
-    // Check for WebGL support and device capabilities
-    try {
-      const canvas = document.createElement('canvas');
-      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-      const hasWebGL = !!gl;
-      const isDesktop = window.innerWidth >= 1024;
-      const hasGoodPerformance = navigator.hardwareConcurrency >= 4;
-      
-      return hasWebGL && isDesktop && hasGoodPerformance;
-    } catch (e) {
-      return false;
-    }
+    // Always enable enhanced components now since they use CSS instead of WebGL
+    return true;
   });
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window === 'undefined') return 'dark';
@@ -104,7 +94,7 @@ function App() {
       {/* Particle Background - Enhanced mode only */}
       {useEnhancedComponents && (
         <Suspense fallback={null}>
-          <ParticleBackground 
+          <ParticleBackgroundSimple 
             theme={theme} 
             density="medium" 
             interactive={true} 
@@ -141,7 +131,7 @@ function App() {
         <div id="home" className="h-screen min-h-[700px] flex items-center justify-center">
           <Suspense fallback={<ComponentLoader />}>
             {useEnhancedComponents ? (
-              <EnhancedHero />
+              <EnhancedHeroSimple />
             ) : (
               <Hero />
             )}
@@ -161,7 +151,7 @@ function App() {
           <div id="skills">
             <Suspense fallback={<ComponentLoader />}>
               {useEnhancedComponents ? (
-                <EnhancedSkills 
+                <EnhancedSkillsSimple 
                   onSkillSelect={handleSkillSelect} 
                   selectedSkill={selectedSkill} 
                 />
