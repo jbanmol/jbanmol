@@ -1,4 +1,4 @@
-# jbanmol.tech v2.0 - Enhanced Interactive Portfolio ⚡.
+# jbanmol.tech v2.0 - Enhanced Interactive Portfolio ⚡
 
 A cutting-edge portfolio website featuring **3D graphics**, **advanced animations**, and **AI-powered interactions**. Built with React, TypeScript, and modern web technologies to create an immersive user experience.
 
