@@ -30,7 +30,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       events: {
         onClick: { enable: interactive, mode: "push" },
         onHover: { enable: interactive, mode: "repulse" },
-        resize: true
+        resize: { enable: true }
       },
       modes: {
         push: { quantity: 4 },
