@@ -1,26 +1,59 @@
-import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
-export default defineConfig(({ mode }) => {
-    const env = loadEnv(mode, '.', '');
-    return {
-      server: {
-        port: 3000,
-        host: '0.0.0.0',
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
+      '@components': resolve(__dirname, './components'),
+      '@hooks': resolve(__dirname, './hooks'),
+      '@services': resolve(__dirname, './services'),
+    },
+  },
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'framer-motion',
+      '@react-three/fiber',
+      '@react-three/drei',
+      'three',
+      'react-tsparticles',
+      'tsparticles',
+      'lucide-react',
+      '@google/genai',
+      'react-markdown',
+      'remark-gfm'
+    ],
+  },
+  build: {
+    target: 'esnext',
+    minify: 'terser',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'animation-vendor': ['framer-motion'],
+          'three-vendor': ['@react-three/fiber', '@react-three/drei', 'three'],
+          'particle-vendor': ['react-tsparticles', 'tsparticles'],
+          'ui-vendor': ['lucide-react'],
+          'ai-vendor': ['@google/genai'],
+          'markdown-vendor': ['react-markdown', 'remark-gfm']
+        },
       },
-      plugins: [react()],
-      define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY || ''),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY || '')
-      },
-      build: {
-        outDir: 'dist'
-      },
-      resolve: {
-        alias: {
-          '@': path.resolve(__dirname, '.'),
-        }
-      }
-    };
+    },
+    chunkSizeWarningLimit: 1000,
+  },
+  server: {
+    port: 3000,
+    host: true,
+  },
+  preview: {
+    port: 3000,
+    host: true,
+  },
 });
