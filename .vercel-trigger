@@ -1,0 +1,6 @@
+# Vercel Trigger
+Timestamp: 2025-10-30T20:46:00+05:30
+Build fixes applied:
+- React downgraded to 18.x for @react-three/fiber compatibility
+- npm ci --legacy-peer-deps to resolve peer dependency conflicts
+- All enhanced components ready for deployment
