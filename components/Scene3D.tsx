@@ -1,3 +1,4 @@
+/// <reference path="../r3f.d.ts" />
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, Box, Torus, Float, MeshDistortMaterial } from '@react-three/drei';

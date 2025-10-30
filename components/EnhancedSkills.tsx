@@ -1,3 +1,4 @@
+/// <reference path="../r3f.d.ts" />
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Canvas, useFrame } from '@react-three/fiber';
