@@ -26,7 +26,7 @@ const ParticleBackgroundSimple: React.FC<ParticleBackgroundSimpleProps> = ({
   const [particles, setParticles] = useState<Particle[]>([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | null>(null);
 
   const densityMap = {
     low: 20,
