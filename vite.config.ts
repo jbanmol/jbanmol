@@ -18,11 +18,6 @@ export default defineConfig({
       'react',
       'react-dom',
       'framer-motion',
-      '@react-three/fiber',
-      '@react-three/drei',
-      'three',
-      'react-tsparticles',
-      'tsparticles',
       'lucide-react',
       '@google/genai',
       'react-markdown',
@@ -38,8 +33,6 @@ export default defineConfig({
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
           'animation-vendor': ['framer-motion'],
-          'three-vendor': ['@react-three/fiber', '@react-three/drei', 'three'],
-          'particle-vendor': ['react-tsparticles', 'tsparticles'],
           'ui-vendor': ['lucide-react'],
           'ai-vendor': ['@google/genai'],
           'markdown-vendor': ['react-markdown', 'remark-gfm']
