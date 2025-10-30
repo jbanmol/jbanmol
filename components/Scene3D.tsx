@@ -2,6 +2,7 @@ import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, Box, Torus, Float, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
+import '@react-three/fiber';
 
 interface FloatingGeometryProps {
   position: [number, number, number];

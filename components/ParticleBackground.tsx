@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import Particles from 'react-tsparticles';
 import { loadSlim } from '@tsparticles/slim';
-import type { Engine } from 'tsparticles-engine';
+import type { Engine, IOptions } from '@tsparticles/engine';
 
 interface ParticleBackgroundProps {
   theme?: 'light' | 'dark';
@@ -18,7 +18,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     await loadSlim(engine);
   }, []);
 
-  const particleOptions = useMemo(() => {
+  const particleOptions: RecursivePartial<IOptions> = useMemo(() => {  // Ensure type safety for Vercel
     const densityMap = {
       low: 30,
       medium: 50,

@@ -6,6 +6,7 @@ import { skills } from '../constants';
 import type { Skill } from '../types';
 import useTheme from '../hooks/useTheme';
 import * as THREE from 'three';
+import '@react-three/fiber';
 
 // 3D Skill Orb Component
 const SkillOrb3D: React.FC<{ 
