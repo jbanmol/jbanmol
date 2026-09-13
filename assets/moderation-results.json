@@ -1,0 +1,31 @@
+{
+  "source": "https://raw.githubusercontent.com/jbanmol/comment-moderation-nlp-ensemble/3ee35e85d2743532da3927989b3c73cdc1f4bfbe/23f1001015-notebook-v4.ipynb",
+  "metric": "Recorded V4 exploratory OOF macro F1",
+  "limitations": "Preprocessing fitted before CV; ensemble weights and offsets selected on the same OOF labels. Not an independent test benchmark.",
+  "results": [
+    {
+      "label": "Logistic regression",
+      "macro_f1": 0.60453
+    },
+    {
+      "label": "CatBoost",
+      "macro_f1": 0.77132
+    },
+    {
+      "label": "LightGBM",
+      "macro_f1": 0.7917
+    },
+    {
+      "label": "XGBoost",
+      "macro_f1": 0.79945
+    },
+    {
+      "label": "Selected ensemble",
+      "macro_f1": 0.80659
+    },
+    {
+      "label": "Selected score offsets",
+      "macro_f1": 0.80701
+    }
+  ]
+}
