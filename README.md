@@ -4,7 +4,7 @@
 
 I work with **Kidaura** on healthcare and behavioral AI. My focus is applied ML systems: data pipelines, PyTorch experiments, evaluation, and interfaces that keep people in control of model outputs.
 
-[**Portfolio ↗**](https://jbanmol.tech) · [LinkedIn](https://linkedin.com/in/jbanmol) · [Email](mailto:jbanmol9@gmail.com) · [Selected work](#selected-work) · [Contributions](#contributions)
+[**Portfolio ↗**](https://jbanmol.space) · [LinkedIn](https://linkedin.com/in/jbanmol) · [Email](mailto:jbanmol9@gmail.com) · [Selected work](#selected-work) · [Contributions](#contributions)
 
 Interested in ML / Research Engineer internships and early-career opportunities internationally.
 
