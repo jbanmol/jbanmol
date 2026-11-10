@@ -4,7 +4,7 @@
 
 I build and evaluate AI applications across vision, language, audio and structured data. My work connects model experiments and data pipelines with interfaces that help people inspect evidence, review outputs and make decisions.
 
-I am especially interested in how models learn representations across modalities, and how we can evaluate their failures before relying on them.
+Especially interested in how models learn representations across modalities, and how we can evaluate their failures before relying on them.
 
 [Portfolio](https://www.jbanmol.space/) · [Research notebook](https://www.jbanmol.space/notebook) · [LinkedIn](https://linkedin.com/in/jbanmol) · [Email](mailto:jbanmol9@gmail.com)
 
