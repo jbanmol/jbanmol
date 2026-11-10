@@ -10,7 +10,7 @@ Especially interested in how models learn representations across modalities, and
 
 ## Current work
 
-I am an **AI Engineer at Kidaura** and a **BS Data Science and Applications student at IIT Madras**.
+**AI Engineer at Kidaura** and a **BS Data Science and Applications student at IIT Madras**.
 
 At Kidaura, I build Care OS: workflows that turn clinical reports into evidence-linked plan drafts for clinician review. I own product and workflow decisions, direct coding agents, review the implementation, and test and iterate on the system. Care OS is under controlled evaluation; clinicians remain responsible for clinical decisions. Public examples use synthetic cases.
 
